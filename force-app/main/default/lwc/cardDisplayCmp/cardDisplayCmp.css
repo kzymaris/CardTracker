@@ -1,0 +1,18 @@
+.mana {
+    height:100% !important;
+    display: block;
+    border-radius: 30px;
+    box-sizing: border-box;
+}
+.selected {
+    height:100% !important;
+    display: block;
+    border-radius: 30px;
+    box-sizing: border-box;
+    background-color: rgb(209, 197, 87);
+}
+
+.slds-modal__container {
+    max-width: 80rem !important;
+    width: 80% !important;
+}
