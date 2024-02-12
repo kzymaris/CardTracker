@@ -21,6 +21,7 @@ export default class CardSearchCmp extends LightningElement {
         return [
             { label: 'Lands Binder', value: 'Lands Binder' },
             { label: 'Main Binder', value: 'Main Binder' },
+            { label: 'Good Binder', value: 'Good Binder' },
             { label: 'Nonrares', value: 'Nonrares' },
             { label: 'Sram', value: 'Sram' },
             { label: 'Sidisi', value: 'Sidisi' },
@@ -32,6 +33,8 @@ export default class CardSearchCmp extends LightningElement {
             { label: 'Clones', value: 'Clones' },
             { label: 'Vaevictis', value: 'Vaevictis' },
             { label: 'Marchesa', value: 'Marchesa' },
+            { label: 'Ping', value: 'Ping' },
+            { label: 'Asmoranomardicadaistinaculdacar', value: 'Asmoranomardicadaistinaculdacar' },
         ];
     }
 

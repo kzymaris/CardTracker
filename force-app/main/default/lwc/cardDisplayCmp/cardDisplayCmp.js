@@ -41,6 +41,7 @@ export default class CardDisplayCmp extends LightningElement {
     _locations = [
         { label: 'Lands Binder', value: 'Lands Binder' },
         { label: 'Main Binder', value: 'Main Binder' },
+        { label: 'Good Binder', value: 'Good Binder' },
         { label: 'Nonrares', value: 'Nonrares' },
         { label: 'Sram', value: 'Sram' },
         { label: 'Sidisi', value: 'Sidisi' },
@@ -52,6 +53,8 @@ export default class CardDisplayCmp extends LightningElement {
         { label: 'Clones', value: 'Clones' },
         { label: 'Vaevictis', value: 'Vaevictis' },
         { label: 'Marchesa', value: 'Marchesa' },
+        { label: 'Ping', value: 'Ping' },
+        { label: 'Asmoranomardicadaistinaculdacar', value: 'Asmoranomardicadaistinaculdacar' },
     ];
     get locations() {
         let result = [...this._locations];
@@ -358,5 +361,55 @@ export default class CardDisplayCmp extends LightningElement {
                 this.showToast(error);
                 console.log(error);
             });
+    }
+
+    exportCsv() {
+        const rows = [
+            ['Count',
+                'Name',
+                'Edition',
+                'Foil',
+                'Collector Number']
+        ];
+        this.filteredCards.forEach(card => {
+            if (card.nonFoilAmount) {
+                rows.push([card.nonFoilAmount, card.name, card.set, '', card.collector_number])
+            }
+            if (card.foilAmount) {
+                rows.push([card.foilAmount, card.name, card.set, 'foil', card.collector_number])
+            }
+        });
+
+        let csvContent = "data:text/csv;charset=utf-8,"
+            + rows.map(e => e.join(",")).join("\n");
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "export.csv");
+        document.body.appendChild(link);
+
+        link.click();
+    }
+
+    exportTxt() {
+        const rows = [];
+        this.filteredCards.forEach(card => {
+            if (card.nonFoilAmount) {
+                rows.push([card.nonFoilAmount, card.name, `(${card.set})`, card.collector_number, ''])
+            }
+            if (card.foilAmount) {
+                rows.push([card.foilAmount, card.name, `(${card.set})`, card.collector_number, '*F*'])
+            }
+        });
+
+        let txtContent = "data:text/plain;charset=utf-8,"
+            + rows.map(e => e.join(" ")).join("\n");
+        var encodedUri = encodeURI(txtContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "export.txt");
+        document.body.appendChild(link);
+
+        link.click();
     }
 }

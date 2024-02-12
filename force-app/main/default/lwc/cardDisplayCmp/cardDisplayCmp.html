@@ -32,6 +32,10 @@
             <lightning-button variant="brand" label="Save" title="Save" onclick={saveToFile}
                 class="slds-m-left_x-small">
             </lightning-button>
+            <lightning-button-menu alternative-text="Export" label="Export" class="slds-m-left_x-small">
+                <lightning-menu-item label="CSV" value="csv" onclick={exportCsv}></lightning-menu-item>
+                <lightning-menu-item label="TXT" value="txt" onclick={exportTxt}></lightning-menu-item>
+            </lightning-button-menu>
         </div>
 
         <div class="slds-grid slds-grid_align-center slds-var-m-around_x-small">
